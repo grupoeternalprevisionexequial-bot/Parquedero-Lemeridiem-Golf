@@ -1,1 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#0F2B1E"/>
+<title>Parqueadero El Meridiam</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;background:#0A1F15}
+body{font-family:'Outfit','Segoe UI',sans-serif;color:#F5F0E6}
+#app{min-height:100vh;background:linear-gradient(175deg,#0F2B1E,#0A1F15);display:flex;flex-direction:column;align-items:center}
+.screen{width:100%;max-width:430px;padding:28px 18px}
+.card{background:linear-gradient(145deg,#1A4230,#163828);border-radius:20px;padding:26px 20px;width:100%;border:1px solid rgba(201,169,110,0.18);box-shadow:0 8px 32px rgba(0,0,0,0.45)}
+.logo{width:78px;height:78px;border-radius:50%;border:2.5px solid #C9A96E;display:flex;align-items:center;justify-content:center;background:#0F2B1E;margin:0 auto 18px;flex-shrink:0}
+.logo-sm{width:44px;height:44px;border-radius:50%;border:2px solid #C9A96E;display:flex;align-items:center;justify-content:center;background:#0F2B1E;flex-shrink:0}
+h1{font-size:19px;font-weight:800;color:#E8D5A8;text-align:center;margin-bottom:2px}
+.sub{font-size:13px;color:#8A9B93;text-align:center;margin-bottom:4px}
+.ptitle{font-size:15px;font-weight:700;color:#F5F0E6;text-align:center;margin-bottom:26px}
+.lbl{display:block;font-size:13px;color:#C9A96E;font-weight:700;margin-bottom:7px;margin-top:14px}
+input{background:rgba(255,255,255,0.09);border:1.5px solid rgba(201,169,110,0.35);border-radius:10px;padding:14px 15px;font-size:16px;color:#F5F0E6;width:100%;font-family:inherit;outline:none;-webkit-appearance:none;appearance:none}
+input:focus{border-color:#C9A96E}
+.plate-i{text-align:center;font-size:26px;font-weight:800;letter-spacing:5px;text-transform:uppercase}
+.btn{background:linear-gradient(135deg,#C9A96E,#B8943F);color:#0F2B1E;border:none;border-radius:12px;padding:15px;font-size:16px;font-weight:800;cursor:pointer;width:100%;font-family:inherit;margin-top:14px;touch-action:manipulation}
+.btn:active{opacity:.85}
+.btn:disabled{opacity:.4}
+.btn2{background:transparent;color:#C9A96E;border:1.5px solid #C9A96E;border-radius:12px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;margin-top:10px;touch-action:manipulation}
+.bback{background:rgba(255,255,255,0.07);color:#8A9B93;border:1px solid rgba(201,169,110,0.15);border-radius:10px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:16px;display:inline-block;touch-action:manipulation}
+.row2{display:flex;gap:10px;margin-top:14px}
+.half{flex:1}
+.kpi{border-radius:12px;padding:13px;text-align:center}
+.kv{font-size:22px;font-weight:800;margin-top:4px}
+.ttable{border-radius:10px;overflow:hidden;border:1px solid rgba(201,169,110,0.15);margin-top:12px;margin-bottom:8px}
+.thead{display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(201,169,110,0.16);padding:8px 10px}
+.thead span{font-size:10px;font-weight:700;color:#C9A96E}
+.trow{display:grid;grid-template-columns:1fr 1fr 1fr;padding:7px 10px;border-top:1px solid rgba(201,169,110,0.08)}
+.trow span{font-size:11px;color:#F5F0E6}
+.trow span:nth-child(2){text-align:center}
+.trow span:nth-child(3){text-align:right}
+.trow.act{background:rgba(46,204,113,0.13)}
+.trow.act span{color:#2ECC71}
+.togbox{background:rgba(201,169,110,0.08);border-radius:10px;padding:11px 13px;margin-top:12px;cursor:pointer;touch-action:manipulation}
+.toghead{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#E8D5A8;font-weight:700;pointer-events:none}
+.togbody{font-size:11px;color:#8A9B93;line-height:1.7;margin-top:8px}
+.hidden{display:none}
+.warnbox{background:rgba(231,76,60,0.11);border:1px solid rgba(231,76,60,0.25);border-radius:10px;padding:10px 13px;font-size:12px;color:#E8A09A;margin-top:12px;display:flex;gap:8px;align-items:center}
+.infobox{background:rgba(255,255,255,0.04);border-radius:10px;padding:11px 13px;font-size:11px;color:#8A9B93;line-height:1.65;margin-top:12px}
+.ok-circle{width:72px;height:72px;border-radius:50%;background:rgba(46,204,113,0.15);border:2px solid #2ECC71;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:34px}
+.fail-circle{width:72px;height:72px;border-radius:50%;background:rgba(231,76,60,0.15);border:2px solid #E74C3C;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:34px}
+.tcard{background:linear-gradient(135deg,rgba(201,169,110,0.13),rgba(201,169,110,0.05));border-radius:16px;padding:20px 16px;margin-top:14px;border:1px solid rgba(201,169,110,0.2);text-align:center}
+.badge{display:inline-block;background:rgba(201,169,110,0.15);border-radius:20px;padding:5px 13px;font-size:12px;color:#C9A96E;font-weight:700;margin-top:8px}
+.rgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0}
+.rbtn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 6px;border-radius:14px;border:2px solid rgba(201,169,110,0.15);background:rgba(255,255,255,0.04);cursor:pointer;font-family:inherit;touch-action:manipulation;width:100%}
+.rbtn.sel{border-color:#C9A96E;background:rgba(201,169,110,0.15)}
+.rbtn .ri{font-size:27px;pointer-events:none}
+.rbtn .rl{font-size:11px;color:#8A9B93;font-weight:500;text-align:center;pointer-events:none}
+.rbtn.sel .rl{color:#E8D5A8;font-weight:700}
+.mbtn{display:flex;align-items:center;gap:13px;padding:14px 15px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.15);border-radius:12px;cursor:pointer;font-family:inherit;color:#F5F0E6;font-size:15px;font-weight:600;width:100%;margin-top:10px;touch-action:manipulation}
+.mbtn:active{background:rgba(201,169,110,0.12)}
+.hrow{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.vimg{background:rgba(0,0,0,0.3);border-radius:13px;height:150px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px dashed rgba(201,169,110,0.2);position:relative;overflow:hidden}
+.pbar{position:absolute;bottom:0;left:0;right:0;padding:8px 13px;background:rgba(15,43,30,0.92);display:flex;justify-content:space-between;align-items:center}
+.inv{background:#F5F0E6;color:#0F2B1E;border-radius:18px;padding:22px;width:100%}
+.irow{display:flex;justify-content:space-between;font-size:13px;line-height:2.2;color:#3A5044}
+.itotal{display:flex;justify-content:space-between;font-size:16px;font-weight:800}
+.idiv{height:1px;background:#D4C9B0;margin:11px 0}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:#F5F0E6;line-height:1.6;margin-top:12px}
+.chk input[type=checkbox]{accent-color:#C9A96E;margin-top:3px;flex-shrink:0;width:16px;height:16px}
+.gold{color:#C9A96E}.green{color:#2ECC71}.gray{color:#8A9B93}.cream{color:#F5F0E6}.red{color:#E74C3C}.glt{color:#E8D5A8}
+.tc{text-align:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{width:62px;height:62px;border-radius:50%;border:3px solid rgba(201,169,110,0.2);border-top-color:#C9A96E;margin:0 auto 20px;animation:spin 1s linear infinite}
+.divider{height:1px;background:rgba(201,169,110,0.15);margin:16px 0}
+.ally{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:1px solid rgba(201,169,110,0.1)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var S={screen:'plate',plate:'',user:null,amount:0,method:'',vReason:'',vIcon:'',regMethod:'email'};
+var USERS={
+  'ABC123':{name:'Carlos Rodríguez',email:'carlos@email.com',phone:'3001234567',ms:Date.now()-2.5*3600000},
+  'XYZ789':{name:'María López',email:'maria@email.com',phone:'3109876543',ms:Date.now()-1.2*3600000}
+};
+var REASONS=[
+  {id:'res',l:'Restaurante',i:'🍽️'},
+  {id:'sho',l:'Compras',i:'🛍️'},
+  {id:'ent',l:'Entretenimiento',i:'🎭'},
+  {id:'spo',l:'Deporte',i:'⚽'},
+  {id:'mar',l:'Mercado',i:'🛒'},
+  {id:'oth',l:'Otro',i:'✨'}
+];
+var TARIFFS=[
+  {r:'0 – 1 hora',t:'GRATIS',a:'$0'},
+  {r:'1 – 2 horas',t:'$3.000',a:'$3.000'},
+  {r:'2 – 3 horas',t:'$2.000',a:'$5.000'},
+  {r:'3 – 4 horas',t:'$1.800',a:'$6.800'},
+  {r:'4 – 5 horas',t:'$1.700',a:'$8.500'},
+  {r:'5 – 6 horas',t:'$1.500',a:'$10.000'},
+  {r:'6 – 12 horas',t:'INCLUIDO',a:'$10.000'}
+];
 
+function calc(ms){
+  var diff=Date.now()-ms, hrs=diff/3600000, m=Math.floor(diff/60000);
+  var h=Math.floor(m/60), mn=m%60;
+  var amt=hrs<=1?0:hrs<=2?3000:hrs<=3?5000:hrs<=4?6800:hrs<=5?8500:10000;
+  var nxt=hrs<=1?Math.ceil((1-hrs)*60):hrs<=2?Math.ceil((2-hrs)*60):hrs<=3?Math.ceil((3-hrs)*60):hrs<=4?Math.ceil((4-hrs)*60):hrs<=5?Math.ceil((5-hrs)*60):0;
+  var et=new Date(ms).toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+  return{hrs:hrs,h:h,m:mn,amt:amt,nxt:nxt,et:et};
+}
+function cop(n){return'$'+n.toLocaleString('es-CO');}
+function svg(s){var h=s||44;return'<svg width="'+(h*.48)+'" height="'+(h*.48)+'" viewBox="0 0 40 40" fill="none"><path d="M8 32V8L20 20L32 8V32" stroke="#C9A96E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="10" r="3" fill="#C9A96E"/></svg>';}
+function go(sc){S.screen=sc;draw();}
+
+function draw(){
+  var app=document.getElementById('app');
+  app.innerHTML=pages[S.screen]();
+  bind();
+}
+
+var pages={
+plate:function(){
+  return '<div class="screen tc"><div class="card"><div class="logo">'+svg(78)+'</div><h1>Le Meridiem Golf</h1><div class="sub">Centro Comercial</div><div class="ptitle">Parqueadero El Meridiam</div><label class="lbl" style="text-align:left">Placa del vehículo</label><input id="pi" class="plate-i" placeholder="ABC 123" maxlength="7" type="text" autocomplete="off" spellcheck="false"/><button class="btn" id="bq">Consultar</button><div class="gray" style="font-size:12px;margin-top:12px">Ingrese la placa para consultar su estado y realizar el pago.</div></div></div>';
+},
+register:function(){
+  var ef=S.regMethod!=='sms', sf=S.regMethod==='sms';
+  return '<div class="screen"><div class="card"><button class="bback" id="bback">← Volver</button><div class="hrow"><div class="logo-sm">'+svg(44)+'</div><div><div style="font-size:17px;font-weight:800;color:#E8D5A8">Registro de usuario</div><div class="gray" style="font-size:13px">Placa: <strong class="glt">'+S.plate+'</strong></div></div></div><label class="lbl">Nombre completo</label><input id="rn" placeholder="Ej: Juan Pérez" type="text"/><label class="lbl">Recibir factura por</label><div class="row2" style="margin-top:8px"><button class="mbtn half'+(ef?' sel2':'')+'" id="mEm" style="margin:0;'+(ef?'border-color:#C9A96E;background:rgba(201,169,110,0.15)':'')+'">📧 Correo</button><button class="mbtn half" id="mSm" style="margin:0;'+(sf?'border-color:#C9A96E;background:rgba(201,169,110,0.15)':'')+'">📱 SMS</button></div>'+(ef?'<label class="lbl">Correo electrónico</label><input id="re" type="email" placeholder="correo@ejemplo.com"/>':'')+(sf?'<label class="lbl">Celular</label><input id="rp" type="tel" placeholder="300 123 4567"/>':'')+'<div class="togbox" style="margin-top:14px" id="tpol"><div class="toghead"><span>📋 Política de Datos Personales</span><span id="tpa">▼</span></div><div class="togbody hidden" id="tpb">En cumplimiento de la Ley 1581 de 2012, sus datos serán usados exclusivamente para gestión del parqueadero y facturación. No serán compartidos con terceros sin autorización expresa.</div></div><label class="chk" style="margin-top:14px"><input type="checkbox" id="ck1"/>Autorizo el tratamiento de mis datos personales conforme a la Política de Datos de Le Meridiem Golf (Ley 1581 de 2012).</label><label class="chk"><input type="checkbox" id="ck2"/>Deseo recibir promociones de Le Meridiem Golf (opcional).</label><button class="btn" id="breg" disabled>Registrarme y continuar</button></div></div>';
+},
+welcome:function(){
+  return '<div class="screen tc"><div class="card"><div style="text-align:left"><button class="bback" id="bback">← Volver</button></div><div class="logo">'+svg(78)+'</div><div class="gray" style="margin-bottom:6px">Bienvenido de nuevo</div><div style="font-size:25px;font-weight:800;color:#E8D5A8;margin-bottom:8px">'+S.user.name+'</div><div class="gray" style="margin-bottom:22px">Placa: <strong class="cream">'+S.plate+'</strong></div><button class="btn" id="bc">Continuar</button><button class="btn2" id="bu">Actualizar mis datos</button></div></div>';
+},
+vehicle:function(){
+  var info=calc(S.user.ms||S.user.entryMs||S.user.entryTime||Date.now()-3600000);
+  var ai=info.hrs<=1?0:info.hrs<=2?1:info.hrs<=3?2:info.hrs<=4?3:info.hrs<=5?4:info.hrs<=6?5:6;
+  var rows=TARIFFS.map(function(t,i){return'<div class="trow'+(i===ai?' act':'')+'"><span>'+t.r+'</span><span>'+t.t+'</span><span>'+t.a+'</span></div>';}).join('');
+  var warn=info.nxt>0&&info.nxt<=15&&info.amt<10000?'<div class="warnbox">⏰ <span>Le faltan <strong style="color:#E74C3C">'+info.nxt+' min</strong> para la siguiente tarifa.</span></div>':'';
+  return '<div class="screen"><div class="card" style="padding:18px 15px"><button class="bback" id="bback">← Volver</button><div class="vimg"><div class="tc"><div style="font-size:46px">🚗</div><div class="gray" style="font-size:12px">Imagen del vehículo (LPR)</div></div><div class="pbar"><span style="color:#E8D5A8;font-weight:800;font-size:17px;letter-spacing:3px">'+S.plate+'</span><span class="gray" style="font-size:12px">Entrada: '+info.et+'</span></div></div><div class="row2"><div class="kpi half" style="background:rgba(201,169,110,0.08)"><div class="gray" style="font-size:11px">Tiempo</div><div class="kv cream">'+info.h+'h '+info.m+'m</div></div><div class="kpi half" style="background:rgba(46,204,113,0.1)"><div class="gray" style="font-size:11px">A pagar</div><div class="kv green">'+cop(info.amt)+'</div></div></div>'+warn+'<div style="font-size:13px;font-weight:700;color:#E8D5A8;margin-top:14px">Tarifas del Parqueadero</div><div class="ttable"><div class="thead"><span>FRANJA</span><span style="text-align:center">TARIFA</span><span style="text-align:right">ACUMULADO</span></div>'+rows+'</div><div class="gray tc" style="font-size:10px;font-style:italic;margin-bottom:10px">Máximo: $10.000 — hasta 12 horas</div><div class="togbox" id="tal"><div class="toghead"><span>🏪 Locales con convenio</span><span id="tala">▼</span></div><div class="togbody hidden" id="talb"><div class="ally"><div><div class="cream" style="font-size:12px;font-weight:600">Restaurante La Terraza</div><div class="gray" style="font-size:11px">Mín: $30.000</div></div><span class="green" style="font-size:12px;font-weight:700">1h gratis</span></div><div class="ally"><div><div class="cream" style="font-size:12px;font-weight:600">Restaurante Il Forno</div><div class="gray" style="font-size:11px">Mín: $50.000</div></div><span class="green" style="font-size:12px;font-weight:700">2h gratis</span></div><div class="ally"><div><div class="cream" style="font-size:12px;font-weight:600">Café del Parque</div><div class="gray" style="font-size:11px">Mín: $15.000</div></div><span class="green" style="font-size:12px;font-weight:700">30 min gratis</span></div></div></div><div class="togbox" id="tpol2" style="margin-top:10px"><div class="toghead"><span>📋 Políticas del parqueadero</span><span id="tpol2a">▼</span></div><div class="togbody hidden" id="tpol2b">• Primera hora sin costo.<br/>• Techo: $10.000/día (12h).<br/>• 15 min para retirar tras el pago.<br/>• Velocidad máx: 10 km/h.</div></div><button class="btn" id="bpay" style="margin-top:14px">Continuar con el pago</button></div></div>';
+},
+reason:function(){
+  var btns=REASONS.map(function(r){return'<button class="rbtn" id="rb_'+r.id+'" data-l="'+r.l+'" data-i="'+r.i+'"><span class="ri">'+r.i+'</span><span class="rl">'+r.l+'</span></button>';}).join('');
+  return '<div class="screen"><div class="card"><button class="bback" id="bback">← Volver</button><div class="hrow"><div class="logo-sm">'+svg(44)+'</div><div><div style="font-size:17px;font-weight:800;color:#E8D5A8">¿Motivo de su visita?</div><div class="gray" style="font-size:13px">Nos ayuda a mejorar su experiencia</div></div></div><div class="rgrid">'+btns+'</div><div id="othw" class="hidden"><label class="lbl">¿Cuál fue el motivo?</label><input id="othi" placeholder="Indíquenos brevemente…"/></div><div class="infobox">🔒 Respuesta voluntaria. Datos tratados con fines estadísticos conforme a la <span class="gold">Política de Datos de Le Meridiem Golf (Ley 1581 de 2012)</span>.</div><button class="btn" id="brea" disabled>Continuar</button></div></div>';
+},
+payment:function(){
+  return '<div class="screen"><div class="card"><button class="bback" id="bback">← Volver</button><div class="hrow"><div class="logo-sm">'+svg(44)+'</div><div><div style="font-size:17px;font-weight:800;color:#E8D5A8">Método de pago</div><div class="gray" style="font-size:13px">Total: <strong class="green">'+cop(S.amount)+'</strong></div></div></div><button class="mbtn" id="m1">📱 &nbsp;Nequi</button><button class="mbtn" id="m2">🔴 &nbsp;Daviplata</button><button class="mbtn" id="m3">🏦 &nbsp;PSE</button><button class="mbtn" id="m4">💳 &nbsp;Tarjeta crédito/débito</button><div style="background:rgba(201,169,110,0.08);border-radius:12px;padding:14px;margin-top:12px"><div style="font-size:13px;color:#E8D5A8;font-weight:700;margin-bottom:10px">💵 Pago en efectivo o tarjeta física</div><div style="display:flex;gap:10px;margin-bottom:8px"><span>📍</span><div><div class="cream" style="font-size:12px;font-weight:600">Módulo Piso 1 – Entrada Principal</div><div class="gray" style="font-size:11px">Junto a la recepción</div></div></div><div style="display:flex;gap:10px"><span>📍</span><div><div class="cream" style="font-size:12px;font-weight:600">Módulo Piso 2 – Zona Restaurantes</div><div class="gray" style="font-size:11px">Frente al ascensor central</div></div></div></div></div></div>';
+},
+processing:function(){
+  setTimeout(function(){go(Math.random()>0.1?'thanks':'failed');},3000);
+  return '<div class="screen tc"><div class="card"><div class="spin"></div><div style="font-size:18px;font-weight:800;color:#E8D5A8;margin-bottom:6px">Procesando pago...</div><div class="gray" style="margin-bottom:20px">No cierre esta ventana</div><div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;text-align:left"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span class="gray">Método</span><span class="cream" style="font-weight:600;text-transform:capitalize">'+S.method+'</span></div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span class="gray">A nombre de</span><span class="cream" style="font-weight:600">'+S.user.name+'</span></div><div class="divider" style="margin:8px 0"></div><div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700"><span class="gold">Total</span><span class="green">'+cop(S.amount)+'</span></div></div></div></div>';
+},
+thanks:function(){
+  var h=new Date().getHours(),gr=h<12?'¡Buen provecho y':h<18?'¡Buenas tardes y':'¡Buenas noches y';
+  return '<div class="screen tc"><div class="card"><div class="ok-circle">✓</div><div style="font-size:22px;font-weight:800;color:#2ECC71;margin-bottom:6px">¡Pago exitoso!</div><div class="cream" style="font-size:14px;margin-bottom:16px">Factura enviada a <strong>'+(S.user.email||S.user.phone)+'</strong></div><div class="divider"></div><div class="tcard"><div style="font-size:36px;margin-bottom:10px">'+(S.vIcon||'🌟')+'</div><div style="font-size:18px;font-weight:800;color:#E8D5A8;margin-bottom:8px">Gracias por su visita,<br/>'+S.user.name.split(' ')[0]+'!</div><div class="cream" style="font-size:13px;line-height:1.7">'+gr+' hasta pronto!<br/>Fue un placer tenerle en <strong>Le Meridiem Golf</strong>.</div>'+(S.vReason?'<div class="badge">Visita: '+S.vReason+'</div>':'')+'</div><div class="infobox">🔒 Datos tratados conforme a la <span class="gold">Política de Datos Personales de Le Meridiem Golf (Ley 1581 de 2012)</span>.</div><div class="warnbox">⏰ <span>Tiene <strong style="color:#E74C3C">15 minutos</strong> para retirar su vehículo.</span></div><button class="btn" id="binv">Ver factura digital</button><button class="btn2" id="bhome">Finalizar</button></div></div>';
+},
+failed:function(){
+  return '<div class="screen tc"><div class="card"><div class="fail-circle">✗</div><div style="font-size:20px;font-weight:800;color:#E74C3C;margin-bottom:8px">Pago no procesado</div><div class="cream" style="font-size:13px;line-height:1.6;margin-bottom:18px">Disculpe. Su pago no pudo ser procesado.</div><div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;text-align:left;margin-bottom:16px"><div style="font-size:13px;color:#E8D5A8;font-weight:700;margin-bottom:10px">¿Qué puede hacer?</div><div style="display:flex;gap:10px;margin-bottom:8px">🔄<span style="font-size:12px;color:#F5F0E6">Intentar con otro método</span></div><div style="display:flex;gap:10px;margin-bottom:8px">💵<span style="font-size:12px;color:#F5F0E6">Módulo de pago (Piso 1 o 2)</span></div><div style="display:flex;gap:10px;margin-bottom:8px">💬<span style="font-size:12px;color:#F5F0E6">WhatsApp: +57 300 123 4567</span></div><div style="display:flex;gap:10px">📞<span style="font-size:12px;color:#F5F0E6">PBX: (605) 385-0000</span></div></div><button class="btn" id="bret">Intentar con otro método</button><button class="btn2" id="bhome">Volver al inicio</button></div></div>';
+},
+invoice:function(){
+  var now=new Date();
+  var num='LM-'+now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'-'+(Math.floor(Math.random()*9000)+1000);
+  return '<div class="screen"><div class="inv"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div><div style="font-size:15px;font-weight:800;color:#0F2B1E">FACTURA ELECTRÓNICA</div><div style="font-size:11px;color:#6B7E73">'+num+'</div></div><div class="logo-sm" style="background:#0F2B1E">'+svg(44)+'</div></div><div class="idiv"></div><div class="irow"><span>Cliente:</span><strong>'+S.user.name+'</strong></div><div class="irow"><span>Placa:</span><strong>'+S.plate+'</strong></div><div class="irow"><span>Fecha:</span><strong>'+now.toLocaleDateString('es-CO')+'</strong></div><div class="irow"><span>Hora:</span><strong>'+now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'})+'</strong></div><div class="idiv"></div><div class="itotal"><span style="color:#0F2B1E">TOTAL PAGADO</span><span style="color:#1A6B3C">'+cop(S.amount)+'</span></div><div class="idiv"></div><div style="font-size:10px;color:#8A9B93;text-align:center;margin-bottom:14px">Le Meridiem Golf · NIT: 900.XXX.XXX-X · Barranquilla, Colombia</div><button class="btn" id="bback" style="background:#0F2B1E;color:#C9A96E">Cerrar</button></div></div>';}
+};
+
+function bind(){
+  function g(id){return document.getElementById(id);}
+  function tog(boxId,arrowId,bodyId){
+    var box=g(boxId);
+    if(box)box.addEventListener('click',function(){
+      g(bodyId).classList.toggle('hidden');
+      g(arrowId).textContent=g(bodyId).classList.contains('hidden')?'▼':'▲';
+    });
+  }
+
+  // Back
+  var bb=g('bback');
+  if(bb){
+    var prev={register:'plate',welcome:'plate',vehicle:USERS[S.plate]?'welcome':'register',reason:'vehicle',payment:'reason',invoice:'thanks'};
+    bb.addEventListener('click',function(){go(prev[S.screen]||'plate');});
+  }
+
+  // PLATE
+  if(S.screen==='plate'){
+    var pi=g('pi');
+    pi.addEventListener('input',function(){this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');});
+    g('bq').addEventListener('click',function(){
+      var p=pi.value.trim();
+      if(p.length<3)return;
+      S.plate=p;
+      if(USERS[p]){S.user=USERS[p];go('welcome');}
+      else{S.regMethod='email';go('register');}
+    });
+  }
+
+  // REGISTER
+  if(S.screen==='register'){
+    tog('tpol','tpa','tpb');
+    var validate=function(){
+      var n=g('rn')&&g('rn').value.trim();
+      var ok=g('ck1')&&g('ck1').checked;
+      var em=g('re')&&g('re').value;
+      var ph=g('rp')&&g('rp').value;
+      var v=n&&n.length>=2&&ok&&(S.regMethod!=='sms'?(em&&em.includes('@')):(ph&&ph.length>=7));
+      g('breg').disabled=!v;
+    };
+    g('mEm').addEventListener('click',function(){S.regMethod='email';go('register');});
+    g('mSm').addEventListener('click',function(){S.regMethod='sms';go('register');});
+    g('ck1').addEventListener('change',validate);
+    g('rn').addEventListener('input',validate);
+    if(g('re'))g('re').addEventListener('input',validate);
+    if(g('rp'))g('rp').addEventListener('input',validate);
+    g('breg').addEventListener('click',function(){
+      var u={name:g('rn').value.trim(),email:g('re')?g('re').value:'',phone:g('rp')?g('rp').value:'',ms:Date.now()-1.5*3600000};
+      S.user=u;USERS[S.plate]=u;go('vehicle');
+    });
+  }
+
+  // WELCOME
+  if(S.screen==='welcome'){
+    if(g('bc'))g('bc').addEventListener('click',function(){go('vehicle');});
+    if(g('bu'))g('bu').addEventListener('click',function(){S.regMethod='email';go('register');});
+  }
+
+  // VEHICLE
+  if(S.screen==='vehicle'){
+    g('bpay').addEventListener('click',function(){
+      var info=calc(S.user.ms||S.user.entryMs||S.user.entryTime||Date.now()-3600000);
+      S.amount=info.amt;go('reason');
+    });
+    tog('tal','tala','talb');
+    tog('tpol2','tpol2a','tpol2b');
+  }
+
+  // REASON
+  if(S.screen==='reason'){
+    REASONS.forEach(function(r){
+      var btn=g('rb_'+r.id);
+      if(btn)btn.addEventListener('click',function(){
+        REASONS.forEach(function(x){var b=g('rb_'+x.id);if(b)b.classList.remove('sel');});
+        btn.classList.add('sel');
+        S.vReason=r.l;S.vIcon=r.i;
+        g('othw').classList[r.id==='oth'?'remove':'add']('hidden');
+        g('brea').disabled=r.id==='oth';
+      });
+    });
+    if(g('othi'))g('othi').addEventListener('input',function(){
+      S.vReason=this.value.trim();
+      g('brea').disabled=this.value.trim().length<2;
+    });
+    g('brea').addEventListener('click',function(){go(S.amount===0?'thanks':'payment');});
+  }
+
+  // PAYMENT
+  if(S.screen==='payment'){
+    [['m1','nequi'],['m2','daviplata'],['m3','pse'],['m4','tarjeta']].forEach(function(p){
+      var btn=g(p[0]);
+      if(btn)btn.addEventListener('click',function(){S.method=p[1];go('processing');});
+    });
+  }
+
+  // THANKS / FAILED / INVOICE
+  if(g('bhome'))g('bhome').addEventListener('click',function(){S.plate='';S.user=null;S.amount=0;S.method='';S.vReason='';S.vIcon='';go('plate');});
+  if(g('bret'))g('bret').addEventListener('click',function(){go('payment');});
+  if(g('binv'))g('binv').addEventListener('click',function(){go('invoice');});
+}
+
+draw();
+</script>
+</body>
+</html>
